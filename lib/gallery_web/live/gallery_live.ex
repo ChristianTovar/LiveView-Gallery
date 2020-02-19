@@ -17,7 +17,8 @@ defmodule GalleryWeb.GalleryLive do
     <div>
       <center>
         <%= for id <- Gallery.image_ids() do %>
-          <img src="<%= Gallery.thumb_url(id) %>">
+          <img src="<%= Gallery.thumb_url(id) %>"
+          class="<%= thumb_css_class(id, @index) %>">
         <% end %>
       </center>
     </div>
@@ -31,5 +32,14 @@ defmodule GalleryWeb.GalleryLive do
 
   def handle_event("next", _, socket) do
     {:noreply, update(socket, :index, &(&1 + 1))}
+  end
+
+  def thumb_css_class(thumb_id, current_id) do
+    id = Enum.at(Gallery.image_ids(), rem(current_id, Gallery.size()))
+
+    cond do
+      thumb_id == id -> "thumb-selected"
+      thumb_id != id -> "thumb-unselected"
+    end
   end
 end

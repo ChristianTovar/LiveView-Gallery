@@ -35,6 +35,8 @@ defmodule Gallery do
 
   def image_ids(), do: @ids
 
+  def size(), do: @list_size
+
   def get_image(index, :large) do
     real_index = Enum.at(@ids, rem(index, @list_size))
     large_url(real_index)

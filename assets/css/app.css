@@ -2,3 +2,11 @@
 
 @import "./phoenix.css";
 @import "../../deps/phoenix_live_view/assets/css/live_view.css";
+
+.thumb-selected{
+    border: 4px solid #0069d9;
+}
+  
+.thumb-unselected{
+    opacity: 0.5;
+}
